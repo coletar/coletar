@@ -1,0 +1,4 @@
+coletar
+=======
+
+EN This is a logistics software to create the better route among pre-defined points. It has been created to support the collecting of recyclable material trying to optimize the collecting route. One only installation can serve many different groups of a network. Developed in Java and MySQL. PT-BR Este software foi criado para apoiar a coleta de material reciclável, buscando otimizar a rota, mas é um software de logística para traçar a melhor rota entre pontos pré-definidos. Uma mesma instalação pode ter dados de várias cooperativas de uma rede. Desenvolvido em Java e MySQL. FR Coletar est un logiciel pour la logistique de la collecte des matières recyclables. Une seule installayion peut servir différentes groupes d'une réseau. Développé en Java et MySQL.
