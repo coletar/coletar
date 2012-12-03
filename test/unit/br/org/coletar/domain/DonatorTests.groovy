@@ -1,7 +1,7 @@
 package br.org.coletar.domain
 
-import coletar.Donator
-import coletar.User
+import br.org.coletar.domain.Donator
+import br.org.coletar.domain.User
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 
