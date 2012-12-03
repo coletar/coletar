@@ -40,7 +40,7 @@ class DonatorTests {
 
         //create an existing user for unique test
         def user = new User(name: "Saulo Andrade",
-                email: "sauloandrade@gmail.com",
+                email: "saulo@gmail.com",
                 password: "123456")
 
         def donator = new Donator(user: user)

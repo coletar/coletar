@@ -1,6 +1,6 @@
 package br.org.coletar.domain
 
-import coletar.User
+import br.org.coletar.domain.User
 import grails.test.mixin.TestFor
 
 /**
@@ -12,6 +12,21 @@ import grails.test.mixin.TestFor
  */
 @TestFor(User)
 class UserTests {
+
+    void testConstraintSucess() {
+
+        //create an existing user for unique test
+        def existingUser = new User(name: "Saulo Andrade",
+                email: "sauloandrade@gmail.com",
+                password: "123456")
+
+        //prepare MOC for testing
+        mockForConstraintsTests(User, [existingUser])
+
+        //test will fail because all paramaters are null
+        def user = new User(name: "saulo",email: "saulo@teste.com",password: "1323456")
+        assert user.validate()
+    }
 
 
     void testConstraintAttributesNullableFail() {
@@ -64,7 +79,7 @@ class UserTests {
 
     }
 
-
+    /*
     void testConstraintsAttributeEmailFail() {
 
         //create an existing user for unique test
@@ -83,8 +98,40 @@ class UserTests {
         assert "email" == user.errors["email"]
         assert user.errors.size == 1
 
+       //test will fail because email is invalid
+        user = new User(name: "Saulo",
+                email: "@saulo.com",
+                password: "123456")
+        assert !user.validate()
+        assert "email" == user.errors["email"]
+        assert user.errors.size == 1
 
-    }
+        //test will fail because email is invalid
+        user = new User(name: "Saulo",
+                email: "saulo@.com",
+                password: "123456")
+        assert !user.validate()
+        assert "email" == user.errors["email"]
+        assert user.errors.size == 1
+
+        //test will fail because email is invalid
+        user = new User(name: "Saulo",
+                email: "saulo@saulo",
+                password: "123456")
+        assert !user.validate()
+        assert "email" == user.errors["email"]
+        assert user.errors.size == 1
+
+        //test will fail because email is invalid
+        user = new User(name: "Saulo",
+                email: "saulo@saulo.",
+                password: "123456")
+        assert !user.validate()
+        assert "email" == user.errors["email"]
+        assert user.errors.size == 1
+
+    }  */
+
 
 
 }
