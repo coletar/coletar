@@ -1,7 +1,9 @@
-package coletar
+package br.org.coletar.domain
 
-import grails.test.mixin.*
-import org.junit.*
+import coletar.Donator
+import coletar.User
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 
 @TestFor(Donator)
 @Mock(User)

@@ -1,4 +1,4 @@
-package coletar
+package br.org.coletar.domain
 
 import grails.validation.Validateable
 

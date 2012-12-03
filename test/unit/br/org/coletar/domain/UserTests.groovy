@@ -1,8 +1,7 @@
-package coletar
+package br.org.coletar.domain
 
+import coletar.User
 import grails.test.mixin.TestFor
-import grails.test.mixin.Mock
-import org.junit.runner.RunWith
 
 /**
  * Created with IntelliJ IDEA.
