@@ -13,35 +13,41 @@ import grails.test.mixin.TestFor
 @TestFor(User)
 class UserTests {
 
-    void testConstraintSucess() {
-
-        //create an existing user for unique test
-        def existingUser = new User(name: "Saulo Andrade",
-                email: "sauloandrade@gmail.com",
-                password: "123456")
+    void testConstraintMinPasswordSucess() {
 
         //prepare MOC for testing
-        mockForConstraintsTests(User, [existingUser])
+        mockForConstraintsTests(User)
 
         //test will fail because all paramaters are null
-        def user = new User(name: "saulo",email: "saulo@teste.com",password: "1323456")
+        def user = new User(name: "saulo",
+                email: "saulo@teste.com",
+                password: "12345")
+        assert user.validate()
+    }
+
+    void testConstraintMaxPasswordSucess() {
+
+        //prepare MOC for testing
+        mockForConstraintsTests(User)
+
+        //test will fail because all paramaters are null
+        def user = new User(name: "saulo",
+                email: "saulo@teste.com",
+                password: "123456789012345")
         assert user.validate()
     }
 
 
     void testConstraintAttributesNullableFail() {
 
-        //create an existing user for unique test
-        def existingUser = new User(name: "Saulo Andrade",
-                                    email: "sauloandrade@gmail.com",
-                                    password: "123456")
-
         //prepare MOC for testing
-        mockForConstraintsTests(User, [existingUser])
+        mockForConstraintsTests(User,)
 
         //test will fail because all paramaters are null
         def user = new User()
+
         assert !user.validate()
+        assert user.errors.errorCount == 3
         assert "nullable" == user.errors["name"]
         assert "nullable" == user.errors["email"]
         assert "nullable" == user.errors["password"]
@@ -50,28 +56,28 @@ class UserTests {
 
     void testConstraintsAttributesBlankFail() {
 
-        //create an existing user for unique test
-        def existingUser = new User(name: "Saulo Andrade",
-                email: "sauloandrade@gmail.com",
-                password: "123456")
-
         //prepare MOC for testing
-        mockForConstraintsTests(User, [existingUser])
+        mockForConstraintsTests(User)
 
         //test will fail because all paramaters are blank
         def user = new User(name: "",
                 email: "",
                 password: "")
+
         assert !user.validate()
+        assert user.errors.errorCount == 3
         assert "blank" == user.errors["name"]
         assert "blank" == user.errors["email"]
         assert "blank" == user.errors["password"]
+
 
         //test will fail because all paramaters are with spaces
         user = new User(name: "    ",
                 email: "   ",
                 password: "    ")
+
         assert !user.validate()
+        assert user.errors.errorCount == 3
         assert "blank" == user.errors["name"]
         assert "blank" == user.errors["email"]
         assert "blank" == user.errors["password"]
@@ -79,58 +85,112 @@ class UserTests {
 
     }
 
-    /*
+    void testConstraintsAttributeEmailUniqueFail() {
+
+        //create existing user
+        def userExisting = new User(name: "saulo",
+                email: "saulo@teste.com",
+                password: "1323456")
+
+        mockForConstraintsTests(User,[userExisting])
+
+        def user = new User(name: "saulo2",
+                email: "saulo@teste.com",
+                password: "13234567")
+
+        assert !user.validate()
+        assert user.errors.errorCount == 1
+        assert "unique" == user.errors["email"]
+
+    }
+
+    void testConstraintsAttributePasswordMinSizeFail() {
+
+        mockForConstraintsTests(User)
+
+        def user = new User(name: "saulo2",
+                email: "saulo@teste.com",
+                password: "1324")
+
+        assert !user.validate()
+        assert user.errors.errorCount == 1
+        assert "size" == user.errors["password"]
+
+    }
+
+    void testConstraintsAttributePasswordMaxSizeFail() {
+
+        mockForConstraintsTests(User)
+
+        def user = new User(name: "saulo2",
+                email: "saulo@teste.com",
+                password: "1324567890123456")
+
+        assert !user.validate()
+        assert user.errors.errorCount == 1
+        assert "size" == user.errors["password"]
+
+    }
+
+
     void testConstraintsAttributeEmailFail() {
 
-        //create an existing user for unique test
-        def existingUser = new User(name: "Saulo Andrade",
-                email: "sauloandrade@gmail.com",
-                password: "123456")
-
         //prepare MOC for testing
-        mockForConstraintsTests(User, [existingUser])
+        mockForConstraintsTests(User)
 
         //test will fail because email is invalid
         def user = new User(name: "Saulo",
                 email: "saulo",
                 password: "123456")
-        assert !user.validate()
-        assert "email" == user.errors["email"]
-        assert user.errors.size == 1
 
-       //test will fail because email is invalid
+        assert !user.validate()
+        assert user.errors.errorCount == 1
+        assert "email" == user.errors["email"]
+
+        //test will fail because email is invalid
         user = new User(name: "Saulo",
                 email: "@saulo.com",
                 password: "123456")
         assert !user.validate()
+        assert user.errors.errorCount == 1
         assert "email" == user.errors["email"]
-        assert user.errors.size == 1
 
         //test will fail because email is invalid
         user = new User(name: "Saulo",
                 email: "saulo@.com",
                 password: "123456")
         assert !user.validate()
+        assert user.errors.errorCount == 1
         assert "email" == user.errors["email"]
-        assert user.errors.size == 1
 
         //test will fail because email is invalid
         user = new User(name: "Saulo",
                 email: "saulo@saulo",
                 password: "123456")
         assert !user.validate()
+        assert user.errors.errorCount == 1
         assert "email" == user.errors["email"]
-        assert user.errors.size == 1
+
 
         //test will fail because email is invalid
         user = new User(name: "Saulo",
                 email: "saulo@saulo.",
                 password: "123456")
         assert !user.validate()
+        assert user.errors.errorCount == 1
         assert "email" == user.errors["email"]
-        assert user.errors.size == 1
 
-    }  */
+        //test will fail because email is invalid
+        user = new User(name: "Saulo",
+                email: "saulo@saulo.w",
+                password: "123456")
+        assert !user.validate()
+        assert user.errors.errorCount == 1
+        assert "email" == user.errors["email"]
+
+    }
+
+
 
 
 
