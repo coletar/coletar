@@ -11,37 +11,24 @@ class DonatorTests {
 
     void testConstraintUserNullableFail() {
 
-        //create an existing user for unique test
-        def existingUser = new User(name: "Saulo Andrade",
-                email: "sauloandrade@gmail.com",
-                password: "123456")
-
-        def existingDonator = new Donator(user: existingUser)
-
         //prepare MOC for testing
-        mockForConstraintsTests(Donator, [existingDonator])
+        mockForConstraintsTests(Donator)
 
         def donator = new Donator()
         assert !donator.validate()
+        assert donator.errors.errorCount == 1
         assert "nullable" == donator.errors["user"]
     }
 
     void testConstraintSucess() {
 
-        //create an existing user for unique test
-        def existingUser = new User(name: "Saulo Andrade",
-                email: "sauloandrade@gmail.com",
-                password: "123456")
-
-        def existingDonator = new Donator(user: existingUser)
-
         //prepare MOC for testing
-        mockForConstraintsTests(Donator, [existingDonator])
+        mockForConstraintsTests(Donator)
 
         //create an existing user for unique test
         def user = new User(name: "Saulo Andrade",
-                email: "saulo@gmail.com",
-                password: "123456")
+                            email: "saulo@gmail.com",
+                            password: "123456")
 
         def donator = new Donator(user: user)
         assert donator.validate()
