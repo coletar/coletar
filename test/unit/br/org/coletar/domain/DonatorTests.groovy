@@ -20,7 +20,7 @@ class DonatorTests {
         assert "nullable" == donator.errors["user"]
     }
 
-    void testConstraintSucess() {
+    void testConstraintSuccess() {
 
         //prepare MOC for testing
         mockForConstraintsTests(Donator)

@@ -1,6 +1,5 @@
 package br.org.coletar.domain
 
-import br.org.coletar.domain.User
 import grails.test.mixin.TestFor
 
 /**
@@ -13,7 +12,7 @@ import grails.test.mixin.TestFor
 @TestFor(User)
 class UserTests {
 
-    void testConstraintMinPasswordSucess() {
+    void testConstraintMinPasswordSuccess() {
 
         //prepare MOC for testing
         mockForConstraintsTests(User)
@@ -25,7 +24,7 @@ class UserTests {
         assert user.validate()
     }
 
-    void testConstraintMaxPasswordSucess() {
+    void testConstraintMaxPasswordSuccess() {
 
         //prepare MOC for testing
         mockForConstraintsTests(User)
