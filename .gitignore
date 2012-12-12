@@ -10,6 +10,7 @@
 eclipse
 stacktrace.log
 target
+cobertura.ser
 /out
 /plugins
 /web-app/plugins
