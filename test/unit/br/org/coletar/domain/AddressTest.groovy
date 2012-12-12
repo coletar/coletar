@@ -14,7 +14,7 @@ import grails.test.mixin.TestFor
 @Mock(Address)
 class AddressTest {
 
-    void testIsGeoreferenced(){
+    void testNotIsGeoreferenced(){
 
         //not georeferenced tests
         def address = new Address()
@@ -26,9 +26,13 @@ class AddressTest {
         address = new Address(longitude: -89.7689)
         assert !address.isGeoreferenced()
 
+    }
+
+    void testIsGeoreferenced(){
+
         //georeferenced test
-        address = new Address(latitude: 67.8287,
-                              longitude: -89.7689)
+        def address = new Address(latitude: 67.8287,
+        longitude: -89.7689)
         assert address.isGeoreferenced()
 
     }
@@ -84,10 +88,45 @@ class AddressTest {
                 zipCode:"200000",
         )
         assert address.validate()
+    }
+
+    void testConstraintNullablesFail(){
+
+        //prepare MOC for testing
+        mockForConstraintsTests(Address)
+
+        //Testing not nullable fields
+        def address = new Address()
+
+        assert !address.validate()
+        assert address.errors.errorCount == 4
+        assert "nullable" == address.errors["street"]
+        assert "nullable" == address.errors["houseNumber"]
+        assert "nullable" == address.errors["district"]
+        assert "nullable" == address.errors["zipCode"]
 
     }
 
+    void testConstraintBlanksFail(){
 
+        //prepare MOC for testing
+        mockForConstraintsTests(Address)
+
+        //Testing not nullable fields
+        def address = new Address(street: "  ",
+                                  houseNumber: "   ",
+                                  district: "",
+                                  zipCode: " ")
+
+
+        assert !address.validate()
+        assert address.errors.errorCount == 4
+        assert "blank" == address.errors["street"]
+        assert "blank" == address.errors["houseNumber"]
+        assert "blank" == address.errors["district"]
+        assert "blank" == address.errors["zipCode"]
+
+    }
 
 
 }
