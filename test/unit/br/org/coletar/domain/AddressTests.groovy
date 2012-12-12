@@ -12,7 +12,7 @@ import grails.test.mixin.TestFor
  */
 @TestFor(Address)
 @Mock(Address)
-class AddressTest {
+class AddressTests {
 
     void testNotIsGeoreferenced(){
 
