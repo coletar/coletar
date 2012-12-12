@@ -15,7 +15,7 @@ class Address {
     String street
     String houseNumber
     String adjunct
-    String neighborhoodOrDistrict
+    String district
     String zipCode
     Double latitude
     Double longitude
@@ -24,12 +24,17 @@ class Address {
         street blank: false
         houseNumber blank: false
         adjunct nullable: true
-        neighborhoodOrDistrict blank: false
+        district blank: false
         zipCode blank: false
         latitude nullable: true
         longitude nullable: true
     }
 
+    /**
+     * An adress is georeferenced if longitude and latitude
+     * are not null
+     * @return indicate if an address is georeferenced
+     */
     def isGeoreferenced(){
         return (this.latitude != null && this.longitude != null)
     }

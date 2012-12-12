@@ -2,12 +2,13 @@ package br.org.coletar.domain
 
 import grails.validation.Validateable
 
+
 @Validateable
 class PreScheduling {
 
     Date date
     Donator donator
-    ItemType itemType
+    CollectItemType collectItemType
     Integer amount
     String phoneNumber
     Address address

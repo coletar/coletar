@@ -3,7 +3,7 @@ package br.org.coletar.domain
 import grails.validation.Validateable
 
 @Validateable
-class ItemType {
+class CollectItemType {
 
     String name
     String unitOfMeasurement
