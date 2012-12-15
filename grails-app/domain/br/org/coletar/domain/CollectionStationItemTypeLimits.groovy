@@ -1,5 +1,8 @@
 package br.org.coletar.domain
 
+import grails.validation.Validateable
+
+@Validateable
 class CollectionStationItemTypeLimits {
 
     CollectionStation collectionStation

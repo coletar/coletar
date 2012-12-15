@@ -6,10 +6,54 @@ import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 
 @TestFor(Donator)
-@Mock(User)
+@Mock([User,Address])
 class DonatorTests {
 
-    //TODO: create test for hasAddress method
+
+    void testHasAddressWithExistentAddress(){
+
+        //create a list with address
+        def address1 = new Address(
+                street: "Street name",
+                houseNumber:"380",
+                adjunct:"apt 5401",
+                district:"Andarai",
+                zipCode:"200000",
+                longitude:-85.0067,
+                latitude:-65.1478
+        )
+
+        def address2 = new Address(
+                street: "Street name 2",
+                houseNumber:"381",
+                adjunct:"apt 5402",
+                district:"Andarai",
+                zipCode:"200000",
+                longitude:-56.9534,
+                latitude:-98.5394
+        )
+
+        def listAddresses = [address1,address2]
+
+        //put address list in donator
+        def donator = new Donator(user: new User(),
+                                  addresses: listAddresses )
+
+        //verify if hasAddress is true
+        assert donator.hasAddress()
+
+    }
+
+    void testHasAddressWithoutAddress(){
+
+        //put address list in donator
+        def donator = new Donator(user: new User())
+
+        //verify if hasAddress is false
+        assert !donator.hasAddress()
+
+    }
+
 
     void testConstraintUserNullableFail() {
 
@@ -27,12 +71,7 @@ class DonatorTests {
         //prepare MOC for testing
         mockForConstraintsTests(Donator)
 
-        //create an existing user for unique test
-        def user = new User(name: "Saulo Andrade",
-                            email: "saulo@gmail.com",
-                            password: "123456")
-
-        def donator = new Donator(user: user)
+        def donator = new Donator(user: new User())
         assert donator.validate()
     }
 

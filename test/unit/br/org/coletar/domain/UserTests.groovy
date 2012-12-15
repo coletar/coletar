@@ -86,20 +86,20 @@ class UserTests {
 
     void testConstraintsAttributeEmailUniqueFail() {
 
-        //create existing user
-        def userExisting = new User(name: "saulo",
+        //create existent user
+        def existentUser = new User(name: "saulo",
                 email: "saulo@teste.com",
                 password: "1323456")
 
-        mockForConstraintsTests(User,[userExisting])
+        mockForConstraintsTests(User,[existentUser])
 
-        def user = new User(name: "saulo2",
+        def newUser = new User(name: "saulo2",
                 email: "saulo@teste.com",
                 password: "13234567")
 
-        assert !user.validate()
-        assert user.errors.errorCount == 1
-        assert "unique" == user.errors["email"]
+        assert !newUser.validate()
+        assert newUser.errors.errorCount == 1
+        assert "unique" == newUser.errors["email"]
 
     }
 

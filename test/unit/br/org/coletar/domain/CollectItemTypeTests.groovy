@@ -29,15 +29,15 @@ class CollectItemTypeTests {
 
     void testConstraintsAttributesNameUnitOfMeasurementUniqueSuccess() {
 
-        //create existing CollectCollectItemType
-        def existingCollectItemType = new CollectItemType(
+        //create existent CollectCollectItemType
+        def existentCollectItemType = new CollectItemType(
                 name: "Material reciclavel",
                 unitOfMeasurement: "Kg",
                 description: "Pode ser medido em Kilos"
         )
 
 
-        mockForConstraintsTests(CollectItemType,[existingCollectItemType])
+        mockForConstraintsTests(CollectItemType,[existentCollectItemType])
 
         def newCollectItemType = new CollectItemType(
                 name: "Material reciclavel",
@@ -51,15 +51,15 @@ class CollectItemTypeTests {
 
     void testConstraintsAttributesNameUnitOfMeasurementelUniqueFail() {
 
-        //create existing CollectCollectItemType
-        def existingCollectItemType = new CollectItemType(
+        //create existent CollectCollectItemType
+        def existentCollectItemType = new CollectItemType(
                 name: "Oleo",
                 unitOfMeasurement: "Litro",
                 description: "Pode ser medido em litros"
         )
 
 
-        mockForConstraintsTests(CollectItemType,[existingCollectItemType])
+        mockForConstraintsTests(CollectItemType,[existentCollectItemType])
 
         def newCollectItemType = new CollectItemType(
                 name: "Oleo",
