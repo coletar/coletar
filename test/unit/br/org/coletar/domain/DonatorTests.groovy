@@ -9,6 +9,8 @@ import grails.test.mixin.TestFor
 @Mock(User)
 class DonatorTests {
 
+    //TODO: create test for hasAddress method
+
     void testConstraintUserNullableFail() {
 
         //prepare MOC for testing

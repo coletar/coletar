@@ -13,24 +13,26 @@ class CollectItemTypeTests {
         //prepare MOC for testing
         mockForConstraintsTests(CollectItemType)
 
+        //success test without collectionStationsItemTypesLimits collection
         def collectCollectItemType = new CollectItemType(
                 name: "Oleo",
                 unitOfMeasurement: "Litro",
-                limitValue: 1,
                 description: "Pode ser medido em litros"
         )
 
         assert collectCollectItemType.validate()
 
+        ////success test with collectionStationsItemTypesLimits collection
+        //TODO: missing add success tests with collectionStationsItemTypesLimits
+
     }
 
-    void testConstraintsAttributesNameUnitOfMeasurementelUniqueSuccess() {
+    void testConstraintsAttributesNameUnitOfMeasurementUniqueSuccess() {
 
         //create existing CollectCollectItemType
         def existingCollectItemType = new CollectItemType(
                 name: "Material reciclavel",
                 unitOfMeasurement: "Kg",
-                limitValue: 1,
                 description: "Pode ser medido em Kilos"
         )
 
@@ -39,8 +41,7 @@ class CollectItemTypeTests {
 
         def newCollectItemType = new CollectItemType(
                 name: "Material reciclavel",
-                unitOfMeasurement: "m3",
-                limitValue: 1,
+                unitOfMeasurement: "M3",
                 description: "Pode ser medido em Metros cubicos"
         )
 
@@ -54,7 +55,6 @@ class CollectItemTypeTests {
         def existingCollectItemType = new CollectItemType(
                 name: "Oleo",
                 unitOfMeasurement: "Litro",
-                limitValue: 1,
                 description: "Pode ser medido em litros"
         )
 
@@ -64,7 +64,6 @@ class CollectItemTypeTests {
         def newCollectItemType = new CollectItemType(
                 name: "Oleo",
                 unitOfMeasurement: "Litro",
-                limitValue: 2,
                 description: "Pode ser medido em litros tambem"
         )
 
@@ -82,10 +81,9 @@ class CollectItemTypeTests {
         def collectCollectItemType = new CollectItemType()
 
         assert !collectCollectItemType.validate()
-        assert collectCollectItemType.errors.errorCount == 4
+        assert collectCollectItemType.errors.errorCount == 3
         assert "nullable" == collectCollectItemType.errors["name"]
         assert "nullable" == collectCollectItemType.errors["unitOfMeasurement"]
-        assert "nullable" == collectCollectItemType.errors["limitValue"]
         assert "nullable" == collectCollectItemType.errors["description"]
 
     }
@@ -98,7 +96,6 @@ class CollectItemTypeTests {
         def collectCollectItemType = new CollectItemType(
                 name: "    ",
                 unitOfMeasurement: " ",
-                limitValue: 1,
                 description: " "
         )
 
@@ -109,38 +106,5 @@ class CollectItemTypeTests {
         assert "blank" == collectCollectItemType.errors["description"]
 
     }
-
-
-    void testConstraintLimitValue(){
-
-        //prepare MOC for testing
-        mockForConstraintsTests(CollectItemType)
-
-        def collectCollectItemType = new CollectItemType(
-                name: "Oleo",
-                unitOfMeasurement: "Litro",
-                limitValue: 0,
-                description: "Pode ser medido em litros"
-        )
-
-        assert !collectCollectItemType.validate()
-        assert collectCollectItemType.errors.errorCount == 1
-        assert "min" == collectCollectItemType.errors["limitValue"]
-
-        collectCollectItemType = new CollectItemType(
-                name: "Oleo",
-                unitOfMeasurement: "Litro",
-                limitValue: -1,
-                description: "Pode ser medido em litros"
-        )
-
-        assert !collectCollectItemType.validate()
-        assert collectCollectItemType.errors.errorCount == 1
-        assert "min" == collectCollectItemType.errors["limitValue"]
-
-    }
-
-
-
 
 }
