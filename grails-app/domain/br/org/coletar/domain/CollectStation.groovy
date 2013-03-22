@@ -3,9 +3,9 @@ package br.org.coletar.domain
 import grails.validation.Validateable
 
 @Validateable
-class CollectionStation {
+class CollectStation {
 
-    static hasMany = [collectionStationsItemTypesLimits: CollectionStationItemTypeLimits]
+    static hasMany = [collectionStationsItemTypesLimits: ItemTypeLimitsForCollectionStation]
 
     String name
     String phoneNumber

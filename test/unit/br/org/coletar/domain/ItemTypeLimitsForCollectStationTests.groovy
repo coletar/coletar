@@ -3,32 +3,31 @@ package br.org.coletar.domain
 
 
 import grails.test.mixin.*
-import org.junit.*
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(CollectionStationItemTypeLimits)
-@Mock([CollectionStation, CollectItemType])
-class CollectionStationItemTypeLimitsTests {
+@TestFor(ItemTypeLimitsForCollectStation)
+@Mock([CollectStation, CollectItemType])
+class ItemTypeLimitsForCollectStationTests {
 
 
     void testConstraintCollectionStationCollectItemTypeUniqueFail() {
 
-        def existentCollectionStation = new CollectionStation()
+        def existentCollectionStation = new CollectStation()
         def existentCollectItemType = new CollectItemType()
 
-        //create existent CollectionStationItemTypeLimits
+        //create existent ItemTypeLimitsForCollectStation
         def existentCollectionStationItemTypeLimits =
-            new CollectionStationItemTypeLimits(collectItemType: existentCollectItemType,
+            new ItemTypeLimitsForCollectStation(collectItemType: existentCollectItemType,
                                                 collectionStation: existentCollectionStation,
                                                 minLimit: 1,
                                                 maxLimit: 1)
 
-        mockForConstraintsTests(CollectionStationItemTypeLimits,[existentCollectionStationItemTypeLimits])
+        mockForConstraintsTests(ItemTypeLimitsForCollectStation,[existentCollectionStationItemTypeLimits])
 
         def newCollectionStationItemTypeLimits =
-            new CollectionStationItemTypeLimits(collectItemType: existentCollectItemType,
+            new ItemTypeLimitsForCollectStation(collectItemType: existentCollectItemType,
                     collectionStation: existentCollectionStation,
                     minLimit: 5,
                     maxLimit: 7)
@@ -40,21 +39,21 @@ class CollectionStationItemTypeLimitsTests {
 
     void testConstraintCollectionStationCollectItemTypeUniqueSuccess() {
 
-        def existentCollectionStation = new CollectionStation()
+        def existentCollectionStation = new CollectStation()
         def existentCollectItemType = new CollectItemType()
 
-        //create existent CollectionStationItemTypeLimits
+        //create existent ItemTypeLimitsForCollectStation
         def existentCollectionStationItemTypeLimits =
-            new CollectionStationItemTypeLimits(collectItemType: existentCollectItemType,
+            new ItemTypeLimitsForCollectStation(collectItemType: existentCollectItemType,
                     collectionStation: existentCollectionStation,
                     minLimit: 1,
                     maxLimit: 1)
 
-        mockForConstraintsTests(CollectionStationItemTypeLimits,[existentCollectionStationItemTypeLimits])
+        mockForConstraintsTests(ItemTypeLimitsForCollectStation,[existentCollectionStationItemTypeLimits])
 
         def newCollectionStationItemTypeLimits =
-            new CollectionStationItemTypeLimits(collectItemType: new CollectItemType(),
-                    collectionStation: new CollectionStation(),
+            new ItemTypeLimitsForCollectStation(collectItemType: new CollectItemType(),
+                    collectionStation: new CollectStation(),
                     minLimit: 5,
                     maxLimit: 7)
 

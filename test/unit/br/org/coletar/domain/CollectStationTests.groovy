@@ -3,13 +3,12 @@ package br.org.coletar.domain
 
 
 import grails.test.mixin.*
-import org.junit.*
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(CollectionStation)
-class CollectionStationTests {
+@TestFor(CollectStation)
+class CollectStationTests {
 
     void testSomething() {
         assert true

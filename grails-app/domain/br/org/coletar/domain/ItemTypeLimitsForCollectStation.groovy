@@ -3,9 +3,9 @@ package br.org.coletar.domain
 import grails.validation.Validateable
 
 @Validateable
-class CollectionStationItemTypeLimits {
+class ItemTypeLimitsForCollectStation {
 
-    CollectionStation collectionStation
+    CollectStation collectionStation
     CollectItemType collectItemType
     Integer minLimit
     Integer maxLimit
