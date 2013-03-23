@@ -4,6 +4,7 @@
 *.log
 *Db.properties
 *Db.script
+.idea/
 .settings
 .classpath
 .project

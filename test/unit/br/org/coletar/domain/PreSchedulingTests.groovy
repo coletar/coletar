@@ -8,7 +8,7 @@ import grails.test.mixin.*
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
 @TestFor(PreScheduling)
-@Mock([PreScheduling,Donator,CollectItemType,Address,CollectionStation])
+@Mock([PreScheduling,Donator,CollectItemType,Address,CollectStation])
 class PreSchedulingTests {
 
     void testConstraintDesiredDateTestFail(){
@@ -24,7 +24,7 @@ class PreSchedulingTests {
                                                         amount: 50,
                                                         phoneNumber: "22222222",
                                                         address: new Address(),
-                                                        collectionStation: new CollectionStation())
+                                                        collectionStation: new CollectStation())
         assert !preScheduling.validate()
         assert preScheduling.errors.errorCount == 1
         assert "min" == preScheduling.errors["desiredDate"]
@@ -43,7 +43,7 @@ class PreSchedulingTests {
                 amount: 50,
                 phoneNumber: "22222222",
                 address: new Address(),
-                collectionStation: new CollectionStation())
+                collectionStation: new CollectStation())
 
         assert preScheduling.validate()
     }

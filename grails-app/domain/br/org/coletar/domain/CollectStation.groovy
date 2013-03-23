@@ -5,7 +5,7 @@ import grails.validation.Validateable
 @Validateable
 class CollectStation {
 
-    static hasMany = [collectionStationsItemTypesLimits: ItemTypeLimitsForCollectionStation]
+    static hasMany = [itemTypeLimitsForCollectStation: ItemTypeLimitsForCollectStation]
 
     String name
     String phoneNumber
@@ -14,7 +14,8 @@ class CollectStation {
 
     static constraints = {
         name blank: false
-        phoneNumber nullable: false
-        email nullable: false
+        phoneNumber blank: false
+        email email: true, blank: false
+        address nullable: false
     }
 }

@@ -5,7 +5,7 @@ import grails.validation.Validateable
 @Validateable
 class CollectItemType {
 
-    static hasMany = [collectionStationsItemTypesLimits: CollectionStationItemTypeLimits]
+    static hasMany = [itemTypeLimitsForCollectStation: ItemTypeLimitsForCollectStation]
 
     String name
     String unitOfMeasurement
@@ -16,6 +16,6 @@ class CollectItemType {
         unitOfMeasurement blank: false
         name unique: 'unitOfMeasurement'
         description blank: false
-        collectionStationsItemTypesLimits nullable: true
+        itemTypeLimitsForCollectStation nullable: true
     }
 }

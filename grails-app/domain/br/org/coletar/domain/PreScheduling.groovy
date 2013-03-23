@@ -8,7 +8,8 @@ import static org.joda.time.DateTime.now
 @Validateable
 class PreScheduling {
 
-    //TODO:Business Rule - When create a preScheduling, automatically add closer collectionStation from current address and collectItemType
+    //TODO:Business Rule - When create a preScheduling, automatically add closer collectStation from current address and collectItemType
+    //TODO:Business Rule - When create a preScheduling, verify max and min values from collectStationSelected to validate prescheduling
 
     static final int MIN_DAYS_FOR_SCHEDULING = 1
 
@@ -18,7 +19,7 @@ class PreScheduling {
     Integer amount
     String phoneNumber
     Address address
-    CollectionStation collectionStation
+    CollectStation collectionStation
 
     static constraints = {
         //current_date + MIN_DAYS_FOR_SCHEDULING days

@@ -5,7 +5,7 @@ import grails.validation.Validateable
 @Validateable
 class ItemTypeLimitsForCollectStation {
 
-    CollectStation collectionStation
+    CollectStation collectStation
     CollectItemType collectItemType
     Integer minLimit
     Integer maxLimit
@@ -13,6 +13,6 @@ class ItemTypeLimitsForCollectStation {
     static constraints = {
         minLimit min: 1
         maxLimit min: 1
-        collectionStation unique: 'collectItemType'
+        collectStation unique: 'collectItemType'
     }
 }

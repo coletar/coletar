@@ -13,17 +13,17 @@ class CollectItemTypeTests {
         //prepare MOC for testing
         mockForConstraintsTests(CollectItemType)
 
-        //success test without collectionStationsItemTypesLimits collection
-        def collectCollectItemType = new CollectItemType(
+        //success test without itemTypeLimitsForCollectStation collection
+        def collectItemType = new CollectItemType(
                 name: "Oleo",
                 unitOfMeasurement: "Litro",
                 description: "Pode ser medido em litros"
         )
 
-        assert collectCollectItemType.validate()
+        assert collectItemType.validate()
 
-        ////success test with collectionStationsItemTypesLimits collection
-        //TODO: missing add success tests with collectionStationsItemTypesLimits
+        //success test with itemTypeLimitsForCollectStation collection
+        //TODO: missing add success tests with itemTypeLimitsForCollectStation
 
     }
 
@@ -78,13 +78,13 @@ class CollectItemTypeTests {
         //prepare MOC for testing
         mockForConstraintsTests(CollectItemType)
 
-        def collectCollectItemType = new CollectItemType()
+        def collectItemType = new CollectItemType()
 
-        assert !collectCollectItemType.validate()
-        assert collectCollectItemType.errors.errorCount == 3
-        assert "nullable" == collectCollectItemType.errors["name"]
-        assert "nullable" == collectCollectItemType.errors["unitOfMeasurement"]
-        assert "nullable" == collectCollectItemType.errors["description"]
+        assert !collectItemType.validate()
+        assert collectItemType.errors.errorCount == 3
+        assert "nullable" == collectItemType.errors["name"]
+        assert "nullable" == collectItemType.errors["unitOfMeasurement"]
+        assert "nullable" == collectItemType.errors["description"]
 
     }
 
@@ -93,17 +93,17 @@ class CollectItemTypeTests {
         //prepare MOC for testing
         mockForConstraintsTests(CollectItemType)
 
-        def collectCollectItemType = new CollectItemType(
+        def collectItemType = new CollectItemType(
                 name: "    ",
                 unitOfMeasurement: " ",
                 description: " "
         )
 
-        assert !collectCollectItemType.validate()
-        assert collectCollectItemType.errors.errorCount == 3
-        assert "blank" == collectCollectItemType.errors["name"]
-        assert "blank" == collectCollectItemType.errors["unitOfMeasurement"]
-        assert "blank" == collectCollectItemType.errors["description"]
+        assert !collectItemType.validate()
+        assert collectItemType.errors.errorCount == 3
+        assert "blank" == collectItemType.errors["name"]
+        assert "blank" == collectItemType.errors["unitOfMeasurement"]
+        assert "blank" == collectItemType.errors["description"]
 
     }
 

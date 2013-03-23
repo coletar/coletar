@@ -40,7 +40,7 @@ class UserTests {
     void testConstraintAttributesNullableFail() {
 
         //prepare MOC for testing
-        mockForConstraintsTests(User,)
+        mockForConstraintsTests(User)
 
         //test will fail because all paramaters are null
         def user = new User()

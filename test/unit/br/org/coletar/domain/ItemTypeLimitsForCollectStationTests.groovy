@@ -14,49 +14,49 @@ class ItemTypeLimitsForCollectStationTests {
 
     void testConstraintCollectionStationCollectItemTypeUniqueFail() {
 
-        def existentCollectionStation = new CollectStation()
+        def existentCollectStation = new CollectStation()
         def existentCollectItemType = new CollectItemType()
 
         //create existent ItemTypeLimitsForCollectStation
-        def existentCollectionStationItemTypeLimits =
+        def existentItemTypeLimitsForCollectStation =
             new ItemTypeLimitsForCollectStation(collectItemType: existentCollectItemType,
-                                                collectionStation: existentCollectionStation,
+                                                collectStation: existentCollectStation,
                                                 minLimit: 1,
                                                 maxLimit: 1)
 
-        mockForConstraintsTests(ItemTypeLimitsForCollectStation,[existentCollectionStationItemTypeLimits])
+        mockForConstraintsTests(ItemTypeLimitsForCollectStation,[existentItemTypeLimitsForCollectStation])
 
-        def newCollectionStationItemTypeLimits =
+        def newItemTypeLimitsForCollectStation =
             new ItemTypeLimitsForCollectStation(collectItemType: existentCollectItemType,
-                    collectionStation: existentCollectionStation,
+                    collectStation: existentCollectStation,
                     minLimit: 5,
                     maxLimit: 7)
 
-        assert !newCollectionStationItemTypeLimits.validate()
-        assert newCollectionStationItemTypeLimits.errors.errorCount == 1
-        assert "unique" == newCollectionStationItemTypeLimits.errors["collectionStation"]
+        assert !newItemTypeLimitsForCollectStation.validate()
+        assert newItemTypeLimitsForCollectStation.errors.errorCount == 1
+        assert "unique" == newItemTypeLimitsForCollectStation.errors["collectStation"]
     }
 
     void testConstraintCollectionStationCollectItemTypeUniqueSuccess() {
 
-        def existentCollectionStation = new CollectStation()
+        def existentCollectStation = new CollectStation()
         def existentCollectItemType = new CollectItemType()
 
         //create existent ItemTypeLimitsForCollectStation
-        def existentCollectionStationItemTypeLimits =
+        def existentItemTypeLimitsForCollectStation =
             new ItemTypeLimitsForCollectStation(collectItemType: existentCollectItemType,
-                    collectionStation: existentCollectionStation,
+                    collectStation: existentCollectStation,
                     minLimit: 1,
                     maxLimit: 1)
 
-        mockForConstraintsTests(ItemTypeLimitsForCollectStation,[existentCollectionStationItemTypeLimits])
+        mockForConstraintsTests(ItemTypeLimitsForCollectStation,[existentItemTypeLimitsForCollectStation])
 
-        def newCollectionStationItemTypeLimits =
+        def newItemTypeLimitsForCollectStation =
             new ItemTypeLimitsForCollectStation(collectItemType: new CollectItemType(),
-                    collectionStation: new CollectStation(),
+                    collectStation: new CollectStation(),
                     minLimit: 5,
                     maxLimit: 7)
 
-        assert newCollectionStationItemTypeLimits.validate()
+        assert newItemTypeLimitsForCollectStation.validate()
     }
 }

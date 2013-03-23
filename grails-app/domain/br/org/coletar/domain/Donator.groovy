@@ -22,7 +22,7 @@ class Donator {
     //TODO: Create tests for all this rules
 
     static constraints = {
-        user blank: false
+        user nullable: false
         addresses nullable: true
         defaultAddress nullable: true
     }
